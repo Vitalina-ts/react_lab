@@ -1,16 +1,12 @@
-﻿import "./App.css";
-import TrafficLights from "./components/TrafficLights";
+import "./App.css";
+import TrafficLights from "./components/TrafficLights.jsx";
 
 function App() {
   return (
     <main className="page">
-      <section className="traffic-card" aria-labelledby="vertical-heading">
-        <h2 id="vertical-heading">Вертикальний світлофор</h2>
-        <TrafficLights orientation="vertical" />
-      </section>
-      <section className="traffic-card" aria-labelledby="horizontal-heading">
-        <h2 id="horizontal-heading">Горизонтальний світлофор</h2>
-        <TrafficLights orientation="horizontal" />
+      <section className="traffic-card" aria-labelledby="traffic-heading">
+        <h2 id="traffic-heading">Інтерактивний світлофор</h2>
+        <TrafficLights />
       </section>
     </main>
   );
