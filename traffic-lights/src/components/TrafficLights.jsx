@@ -22,7 +22,7 @@ const TrafficLights = () => {
     if (!isAutomatic) return;
 
     const intervalId = setInterval(() => {
-      setPhaseIndex(prev => (prev + 1) % cycle.length);
+      setPhaseIndex((prev) => (prev + 1) % cycle.length);
     }, 2000);
 
     return () => clearInterval(intervalId);

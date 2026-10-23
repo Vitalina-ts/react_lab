@@ -43,3 +43,11 @@
   .page { padding: 24px 12px; }
   .traffic-card { padding: 20px 12px; }
 }
+
+.app-header { padding: 24px 20px 0; }
+.app-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+.app-nav a { padding: 12px 18px; border-radius: 10px; color: #263244; text-decoration: none; }
+.app-nav a:hover { background: #dbe3ec; }
+.app-nav a.active { color: white; background: #263244; }
+.app-nav a:focus-visible { outline: 3px solid #2563eb; outline-offset: 3px; }
+.traffic-card h1 { margin: 0 0 24px; text-align: center; font-size: 1.5rem; }
