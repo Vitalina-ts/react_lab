@@ -11,7 +11,7 @@ function StatsBar({
   totalClicks,
   currentSignal,
   orientation,
-  onToggleOrientation,
+  isAutomatic,
 }) {
   return (
     <div className="stats-bar">
@@ -35,15 +35,7 @@ function StatsBar({
         Орієнтація:{" "}
         {orientation === "vertical" ? "вертикальна" : "горизонтальна"}
       </p>
-      <button
-        type="button"
-        className="orientation-button"
-        onClick={onToggleOrientation}
-      >
-        {orientation === "vertical"
-          ? "Розташувати горизонтально"
-          : "Розташувати вертикально"}
-      </button>
+      <p>Режим: {isAutomatic ? "автоматичний" : "ручний"}</p>
     </div>
   );
 }
@@ -57,7 +49,7 @@ StatsBar.propTypes = {
   totalClicks: PropTypes.number.isRequired,
   currentSignal: PropTypes.oneOf(["red", "yellow", "green"]).isRequired,
   orientation: PropTypes.oneOf(["vertical", "horizontal"]).isRequired,
-  onToggleOrientation: PropTypes.func.isRequired,
+  isAutomatic: PropTypes.bool.isRequired,
 };
 
 export default StatsBar;
