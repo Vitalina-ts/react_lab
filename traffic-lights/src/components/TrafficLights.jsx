@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import Light from "./Light.jsx";
-import StatsBar from "./StatsBar.jsx";
 
 const lights = [
   { color: "red", ariaLabel: "Червона лампа" },
@@ -8,88 +7,38 @@ const lights = [
   { color: "green", ariaLabel: "Зелена лампа" },
 ];
 
-const cycle = ["red", "yellow", "green", "yellow"];
-
-const TrafficLights = () => {
-  const [phaseIndex, setPhaseIndex] = useState(0);
-  const [isAutomatic, setIsAutomatic] = useState(false);
-  const currentSignal = cycle[phaseIndex];
-  const [clicks, setClicks] = useState({ red: 0, yellow: 0, green: 0 });
-  const [orientation, setOrientation] = useState("vertical");
-  const totalClicks = clicks.red + clicks.yellow + clicks.green;
-
-  useEffect(() => {
-    if (!isAutomatic) return;
-
-    const intervalId = setInterval(() => {
-      setPhaseIndex((prev) => (prev + 1) % cycle.length);
-    }, 2000);
-
-    return () => clearInterval(intervalId);
-  }, [isAutomatic]);
-
-  function handleLightSelect(color) {
-    if (isAutomatic) return;
-
-    setPhaseIndex(cycle.indexOf(color));
-    setClicks((previousClicks) => ({
-      ...previousClicks,
-      [color]: previousClicks[color] + 1,
-    }));
-  }
-
-  function handleOrientationToggle() {
-    setOrientation((previousOrientation) =>
-      previousOrientation === "vertical" ? "horizontal" : "vertical",
-    );
-  }
-
+const TrafficLights = ({
+  currentSignal,
+  orientation,
+  isAutomatic,
+  onSelect,
+}) => {
   return (
-    <div className="traffic-demo">
-      <div
-        className="TrafficLights"
-        role="group"
-        aria-label="Вибір сигналу світлофора"
-        style={{ flexDirection: orientation === "vertical" ? "column" : "row" }}
-      >
-        {lights.map(({ color, ariaLabel }) => (
-          <Light
-            key={color}
-            color={color}
-            isActive={currentSignal === color}
-            ariaLabel={ariaLabel}
-            onSelect={handleLightSelect}
-            disabled={isAutomatic}
-          />
-        ))}
-      </div>
-      <div className="automatic-controls">
-        <button
-          type="button"
-          className="orientation-button"
-          onClick={() => setIsAutomatic(true)}
+    <div
+      className="TrafficLights"
+      role="group"
+      aria-label="Вибір сигналу світлофора"
+      style={{ flexDirection: orientation === "vertical" ? "column" : "row" }}
+    >
+      {lights.map(({ color, ariaLabel }) => (
+        <Light
+          key={color}
+          color={color}
+          isActive={currentSignal === color}
+          ariaLabel={ariaLabel}
+          onSelect={onSelect}
           disabled={isAutomatic}
-        >
-          Запустити
-        </button>
-        <button
-          type="button"
-          className="orientation-button"
-          onClick={() => setIsAutomatic(false)}
-          disabled={!isAutomatic}
-        >
-          Зупинити
-        </button>
-      </div>
-      <StatsBar
-        clicks={clicks}
-        totalClicks={totalClicks}
-        currentSignal={currentSignal}
-        orientation={orientation}
-        onToggleOrientation={handleOrientationToggle}
-      />
+        />
+      ))}
     </div>
   );
+};
+
+TrafficLights.propTypes = {
+  currentSignal: PropTypes.oneOf(["red", "yellow", "green"]).isRequired,
+  orientation: PropTypes.oneOf(["vertical", "horizontal"]).isRequired,
+  isAutomatic: PropTypes.bool.isRequired,
+  onSelect: PropTypes.func.isRequired,
 };
 
 export default TrafficLights;

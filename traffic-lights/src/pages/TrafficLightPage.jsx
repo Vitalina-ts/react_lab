@@ -1,11 +1,10 @@
 import { useContext } from "react";
 import { TrafficLightsContext } from "../context/TrafficLightsContext.js";
 import TrafficLights from "../components/TrafficLights.jsx";
-import StatsBar from "../components/StatsBar.jsx";
 
 function TrafficLightPage() {
   const {
-    clicks, totalClicks, currentSignal, orientation, isAutomatic,
+    currentSignal, orientation, isAutomatic,
     handleLightSelect, handleOrientationToggle, startAutomatic, stopAutomatic,
   } = useContext(TrafficLightsContext);
 
@@ -29,9 +28,6 @@ function TrafficLightPage() {
             Зупинити
           </button>
         </div>
-        <StatsBar clicks={clicks} totalClicks={totalClicks}
-          currentSignal={currentSignal} orientation={orientation}
-          isAutomatic={isAutomatic} />
         <button type="button" className="orientation-button" onClick={handleOrientationToggle}>
           {orientation === "vertical"
             ? "Розташувати горизонтально"
