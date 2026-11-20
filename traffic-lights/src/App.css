@@ -1,0 +1,53 @@
+﻿.page {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+  padding: 40px 20px;
+}
+
+.page-heading {
+  width: 100%;
+  text-align: center;
+}
+
+.page-heading h1 {
+  margin: 0 0 16px;
+  font-size: clamp(1.6rem, 5vw, 2.3rem);
+}
+
+.page-heading p {
+  color: #475569;
+  line-height: 1.5;
+}
+
+.traffic-card {
+  flex: 1 1 320px;
+  min-width: 0;
+  padding: 24px;
+  background: #fff;
+  border: 1px solid #dbe3ec;
+  border-radius: 18px;
+  box-shadow: 0 6px 20px #0f172a0a;
+}
+
+.traffic-card h2 {
+  margin: 0 0 24px;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+@media (max-width: 420px) {
+  .page { padding: 24px 12px; }
+  .traffic-card { padding: 20px 12px; }
+}
+
+.app-header { padding: 24px 20px 0; }
+.app-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+.app-nav a { padding: 12px 18px; border-radius: 10px; color: #263244; text-decoration: none; }
+.app-nav a:hover { background: #dbe3ec; }
+.app-nav a.active { color: white; background: #263244; }
+.app-nav a:focus-visible { outline: 3px solid #2563eb; outline-offset: 3px; }
+.traffic-card h1 { margin: 0 0 24px; text-align: center; font-size: 1.5rem; }
